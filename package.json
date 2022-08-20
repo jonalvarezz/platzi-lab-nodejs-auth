@@ -1,0 +1,15 @@
+{
+  "name": "platzi-lab-nodejs-auth",
+  "version": "0.1.0",
+  "description": "Laboratorio de Platzi: Node.js Auth",
+  "author": "@jonalvarezz",
+  "main": "index.js",
+  "scripts": {},
+  "keywords": [],
+  "license": "ISC",
+  "dependencies": {},
+  "workspaces": [
+    "api",
+    "frontend"
+  ]
+}
