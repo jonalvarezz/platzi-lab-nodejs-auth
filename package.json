@@ -7,9 +7,11 @@
   "scripts": {},
   "keywords": [],
   "license": "ISC",
-  "dependencies": {},
   "workspaces": [
     "api",
     "frontend"
-  ]
+  ],
+  "devDependencies": {
+    "prettier": "2.7.1"
+  }
 }
