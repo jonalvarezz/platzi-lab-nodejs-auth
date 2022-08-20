@@ -1,0 +1,12 @@
+import { app } from './app.js';
+
+const PORT = process.env.PORT || 3000;
+
+const server = app.listen(PORT, () =>
+  console.log(`[server] Connected to port ${PORT}`)
+);
+
+process.on('unhandledRejection', (err) => {
+  console.error(`[server] An error occurred: ${err.message}`);
+  server.close(() => process.exit(1));
+});
