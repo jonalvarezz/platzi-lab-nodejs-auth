@@ -20,17 +20,25 @@ signUp.post(
 
   //
   async (request, response) => {
-    const errors = validationResult(request);
-    if (!errors.isEmpty()) {
-      return response.status(400).json({ errors: errors.array() });
+    try {
+      const errors = validationResult(request);
+      if (!errors.isEmpty()) {
+        return response.status(400).json({ errors: errors.array() });
+      }
+
+      const { username, password } = request.body;
+
+      const user = await UserModel.create({ username, password });
+
+      return response
+        .status(201)
+        .json({ username: user.username, createdAt: user.createdAt });
+    } catch (error) {
+      console.error(`[signIn]: ${error}`);
+
+      return response.status(500).json({
+        error: 'An unexpected error happened. Please try again later',
+      });
     }
-
-    const { username, password } = request.body;
-
-    const user = await UserModel.create({ username, password });
-
-    return response
-      .status(201)
-      .json({ username: user.username, createdAt: user.createdAt });
   }
 );
