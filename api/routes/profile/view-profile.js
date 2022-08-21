@@ -4,14 +4,10 @@ import { UserModel } from '../../models/User.js';
 
 export const viewUser = Router();
 
-viewUser.get(
-  '/',
-  // @todo: Validación y sanitización de los datos de entrada
+viewUser.get('/', async (request, response) => {
+  const { username } = request.user;
 
-  // @todo: Ver información del usuario actual según la sesión del token JWT
-  async (request, response) => {
-    return response.status(200).json({
-      //
-    });
-  }
-);
+  return response.status(200).json({
+    username,
+  });
+});
