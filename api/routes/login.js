@@ -1,8 +1,11 @@
 import { Router } from 'express';
 import { body, validationResult } from 'express-validator';
 import { compare } from 'bcrypt';
+import { TextEncoder } from 'util';
+import { SignJWT } from 'jose';
 
 import { UserModel } from '../models/User.js';
+import * as config from '../config.js';
 
 export const login = Router();
 
@@ -37,8 +40,11 @@ login.post(
         });
       }
 
-      // @todo: generate a JWT token
-      const token = 'jwt-token';
+      const token = await new SignJWT({ id: user.id })
+        .setProtectedHeader({ alg: 'HS256' })
+        .setIssuedAt()
+        .setExpirationTime('2h')
+        .sign(new TextEncoder().encode(config.jwtSecretKey));
 
       return response.status(201).json({ token, username: user.username });
     } catch (error) {
