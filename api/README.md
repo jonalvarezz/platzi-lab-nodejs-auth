@@ -27,6 +27,16 @@ Esta carpeta corresponde al Backend de este proyecto.
    cd platzi-lab-nodejs-auth
    npm install
    ```
+   
+
+1. Configura tus variables de entorno
+
+   ```sh
+   # Desde la raíz del proyecto
+   cp api/.env.example api/.env
+   ```
+   
+   Revisa que los valores sean correctos. Para MongoDB, si hiciste una instalación típica, no tienes que cambiar nada. La DB a usar por defecto será `platzi-lab-node-auth`
 
 1. Inicia la aplicación backend
 
