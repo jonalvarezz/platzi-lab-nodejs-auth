@@ -1,10 +1,8 @@
 import { Router } from 'express';
 import { body, check, validationResult } from 'express-validator';
-import { genSalt, hash } from 'bcrypt';
 
+import { hashPassword } from '../helpers/auth.js';
 import { UserModel } from '../models/User.js';
-
-const SALT_ROUNDS = 10;
 
 export const signUp = Router();
 
@@ -31,8 +29,7 @@ signUp.post(
       }
 
       const { username } = request.body;
-      const salt = await genSalt(SALT_ROUNDS);
-      const password = await hash(request.body.password, salt);
+      const password = await hashPassword(request.body.password);
 
       const user = await UserModel.create({ username, password });
 
