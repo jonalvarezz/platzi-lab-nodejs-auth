@@ -1,6 +1,7 @@
 import { Router } from 'express';
 import { body, validationResult } from 'express-validator';
 import { UserModel } from '../models/User.js';
+import { ComparePassword, CreateJWTAccessToken } from '../utils/utils.js';
 
 export const login = Router();
 
@@ -28,16 +29,24 @@ login.post(
         });
       }
 
-      const isPasswordValid = password === user.password;
+      const [isPasswordValid, passwordComparissonError] = await ComparePassword(
+        password,
+        user.password
+      );
+
+      if (passwordComparissonError)
+        return response
+          .status(500)
+          .json({ error: true, message: 'Unable to compare user password' });
+
       if (!isPasswordValid) {
         return response.status(400).json({
           error: 'username or password is incorrect',
         });
       }
 
-      // @todo: generate a JWT token
-      const token = 'jwt-token';
-
+      const [token, accessTokenError] = CreateJWTAccessToken(user);
+      console.log(accessTokenError);
       return response.status(201).json({ token, username: user.username });
     } catch (error) {
       console.error(`[signIn]: ${error}`);

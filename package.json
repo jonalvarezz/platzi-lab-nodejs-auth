@@ -4,7 +4,9 @@
   "description": "Laboratorio de Platzi: Node.js Auth",
   "author": "@jonalvarezz",
   "main": "index.js",
-  "scripts": {},
+  "scripts": {
+    "format": "prettier --write ./api"
+  },
   "keywords": [],
   "license": "ISC",
   "workspaces": [
