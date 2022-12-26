@@ -46,7 +46,12 @@ login.post(
       }
 
       const [token, accessTokenError] = CreateJWTAccessToken(user);
-      console.log(accessTokenError);
+
+      if(accessTokenError)
+        return response
+          .status(500)
+          .json({ error: true, message: 'Unable to create access token' });
+
       return response.status(201).json({ token, username: user.username });
     } catch (error) {
       console.error(`[signIn]: ${error}`);
