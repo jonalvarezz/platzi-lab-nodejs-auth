@@ -20,10 +20,11 @@ Desafortunadente, nadie en la empresa sabe del proyecto y es nuestra responsabil
 
 De nuestro "Project Manager", que también es nuevo en la empresa, sabemos lo siguiente:
 
-- [ ] El propósito de la aplicación es permitir crear, actualizar, y eliminar Perfiles de usuario. Los usuarios deberán registrarse primero e iniciar sesión para ser autenticados.
-- [ ] Al momento, solo existe el Backend para registrarse (sign up) e iniciar sesión (login).
-- [ ] Escuché, dice nuestro Project Manager, que aún con lo poco que tiene la aplicación, es muy insegura. Fue echa de afán. Tiene un gravísimo error de seguridad. Sólo se sabe que es relacionado a cómo se guarda cierta información en la base de datos.
-- [ ] Nuestra primera prioridad es encontrar por qué es insegura y arreglarlo.
+- El propósito de la aplicación es permitir crear, actualizar, y eliminar Perfiles de usuario. Los usuarios deberán registrarse primero e iniciar sesión para ser autenticados.
+- Al momento, solo existe el Backend para registrarse (sign up) e iniciar sesión (login).
+- Escuché, dice nuestro Project Manager, que aún con lo poco que tiene la aplicación, es muy insegura. Fue echa de afán. Tiene un gravísimo error de seguridad. Sólo se sabe que es relacionado a cómo se guarda cierta información en la base de datos.
+
+- [x] Nuestra primera prioridad es encontrar por qué es insegura y arreglarlo.
 - [ ] Luego, completar el Backend para que las funcionalidades de crear, modificar y eliminar un Perfil trabajen correctamente.
 - [ ] Aunque ten cuidado, solo usuarios autenticados pueden acceder a su perfil. Así que deberás idear antes alguna forma para saber si el usuario inició sesión e identificar quién es.
 

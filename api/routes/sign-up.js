@@ -1,11 +1,13 @@
 import { Router } from 'express';
 import { body, check, validationResult } from 'express-validator';
 import { UserModel } from '../models/User.js';
+import { HashPassword } from "../utils/utils.js";
 
 export const signUp = Router();
 
 signUp.post(
   '/',
+
   // Validación y sanitización de los datos de entrada
   body('username').not().isEmpty().trim(),
   check('username').custom(async (username) => {
@@ -18,6 +20,8 @@ signUp.post(
   }),
   body('password').isLength({ min: 6 }),
 
+  
+
   //
   async (request, response) => {
     try {
@@ -26,9 +30,16 @@ signUp.post(
         return response.status(400).json({ errors: errors.array() });
       }
 
+      // Crear hash de la contraseña
       const { username, password } = request.body;
+      const [hash, error] = await HashPassword(password)
 
-      const user = await UserModel.create({ username, password });
+      if(error) 
+        return response.status(500)
+          .json({error: true, 
+            message: 'Error trying to hash the user password.'})
+
+      const user = await UserModel.create({ username, password: hash });
 
       return response
         .status(201)
