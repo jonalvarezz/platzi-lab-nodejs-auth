@@ -47,7 +47,7 @@ login.post(
 
       const [token, accessTokenError] = CreateJWTAccessToken(user);
 
-      if(accessTokenError)
+      if (accessTokenError)
         return response
           .status(500)
           .json({ error: true, message: 'Unable to create access token' });
