@@ -1,7 +1,8 @@
 import jwt from 'jsonwebtoken';
 import { ACCESS_TOKEN_SECRET } from '../config/constants.config.js';
+import { UserModel } from '../models/User.js';
 
-export const hasValidAccessToken = (req, res, next) => {
+export const hasValidAccessToken = async (req, res, next) => {
   try {
     // Check the Authirization header was received
     const header = req.get('Authorization');
@@ -22,8 +23,16 @@ export const hasValidAccessToken = (req, res, next) => {
 
     // Check the token is valid
     const payload = jwt.verify(token, ACCESS_TOKEN_SECRET);
-    req.user = { _id: payload.id, username: payload.username };
 
+    // Check the user exists on database
+    const user = await UserModel.findById(payload.id);
+
+    if (!user)
+      return res
+        .status(404)
+        .json({ error: true, message: 'User was not found' });
+
+    req.user = { _id: payload.id, username: user.username };
     return next();
   } catch (error) {
     if (typeof error === 'JsonWebTokenError')
