@@ -43,30 +43,23 @@ login.post(
       );
 
       if (passwordComparissonError)
-        return response
-          .status(500)
-          .json({ error: true, message: 'Unable to compare user password' });
+        throw new Error('Unable to compare user password');
 
-      if (!isPasswordValid) {
+      if (!isPasswordValid)
         return response.status(400).json({
           error: 'username or password is incorrect',
         });
-      }
 
       const [accessToken, accessTokenError] = CreateJWTAccessToken(user);
 
       if (accessTokenError)
-        return response
-          .status(500)
-          .json({ error: true, message: 'Unable to create the access token' });
+        throw new Error('Unable to create the access token');
 
       const [refreshToken, refreshTokenError] = CreateJWTRefreshToken(user);
       const version = request.baseUrl.split('/')[2];
 
       if (refreshTokenError)
-        return response
-          .status(500)
-          .json({ error: true, message: 'Unable to create the refresh token' });
+        throw new Error('Unable to create the refresh token');
 
       return response
         .status(201)

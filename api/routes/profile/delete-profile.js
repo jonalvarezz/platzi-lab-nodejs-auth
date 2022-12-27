@@ -24,10 +24,11 @@ deleteUser.delete(
       const { _id } = request.user;
       const user = await UserModel.findById(_id);
 
-      const [passwordIsCorrect, _] = await ComparePassword(
-        password,
-        user.password
-      );
+      const [passwordIsCorrect, passwordComparissonError] =
+        await ComparePassword(password, user.password);
+
+      if (passwordComparissonError)
+        throw new Error('Unable to compare the passwords');
 
       if (!passwordIsCorrect)
         return response
@@ -42,10 +43,10 @@ deleteUser.delete(
         message: 'User was deleted successfully',
       });
     } catch (error) {
-      console.log(error);
+      console.error(`[profile DEL]: ${error}`);
+
       return response.status(500).json({
-        error: true,
-        message: 'Unable to delete the user',
+        error: 'An unexpected error happened. Please try again later',
       });
     }
   }

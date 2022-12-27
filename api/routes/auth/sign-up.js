@@ -31,12 +31,7 @@ signUp.post(
       // Crear hash de la contraseña
       const { username, password } = request.body;
       const [hash, error] = await HashPassword(password);
-
-      if (error)
-        return response.status(500).json({
-          error: true,
-          message: 'Error trying to hash the user password.',
-        });
+      if (error) throw new Error('Unable to hash the user password');
 
       const user = await UserModel.create({ username, password: hash });
 
