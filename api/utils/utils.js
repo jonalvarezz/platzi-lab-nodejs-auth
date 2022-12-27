@@ -1,7 +1,10 @@
 import {
+  ACCESS_TOKEN_AGE,
   ACCESS_TOKEN_SECRET,
+  REFRESH_TOKEN_AGE,
   REFRESH_TOKEN_SECRET,
 } from '../config/constants.config.js';
+
 import { compare, hash } from 'bcrypt';
 import jwt from 'jsonwebtoken';
 
@@ -26,7 +29,7 @@ export const ComparePassword = async (password, hash) => {
 export const CreateJWTAccessToken = ({ _id, username }) => {
   try {
     const token = jwt.sign({ id: _id, username }, ACCESS_TOKEN_SECRET, {
-      expiresIn: 3600,
+      expiresIn: ACCESS_TOKEN_AGE,
     });
 
     return [token, null];
@@ -38,7 +41,7 @@ export const CreateJWTAccessToken = ({ _id, username }) => {
 export const CreateJWTRefreshToken = ({ _id, username }) => {
   try {
     const token = jwt.sign({ id: _id, username }, REFRESH_TOKEN_SECRET, {
-      expiresIn: 21600, // 6 Hours
+      expiresIn: REFRESH_TOKEN_AGE, // 6 Hours
     });
 
     return [token, null];

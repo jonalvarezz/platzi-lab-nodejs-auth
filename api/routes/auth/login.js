@@ -1,5 +1,9 @@
 import { Router } from 'express';
 import { body, validationResult } from 'express-validator';
+import {
+  ACCESS_TOKEN_AGE,
+  REFRESH_TOKEN_AGE,
+} from '../../config/constants.config.js';
 import { UserModel } from '../../models/User.js';
 import {
   ComparePassword,
@@ -67,11 +71,11 @@ login.post(
       return response
         .status(201)
         .cookie('access-token', accessToken, {
-          maxAge: 3_600_000,
+          maxAge: ACCESS_TOKEN_AGE * 1000, // ms
           httpOnly: true,
         })
         .cookie('refresh-token', refreshToken, {
-          maxAge: 21_600_000,
+          maxAge: REFRESH_TOKEN_AGE * 1000, // ms
           httpOnly: true,
           path: `/api/${version}/refresh`, // Only available on this route
         })
