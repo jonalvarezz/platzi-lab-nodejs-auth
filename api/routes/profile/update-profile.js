@@ -13,10 +13,8 @@ updateUser.put(
   body('newPassword').isLength({ min: 6 }),
   body('currentPassword').isLength({ min: 6 }),
 
-  // @todo: Actualizar información usuario según la sesión del token JWT
   async (request, response) => {
     const errors = validationResult(request);
-
     if (!errors.isEmpty()) {
       return response.status(400).json({ errors: errors.array() });
     }
@@ -30,6 +28,7 @@ updateUser.put(
     // Validate the username is unique (as needed)
     if (user.username !== newUsername) {
       const alreadyExists = await UserModel.findOne({ username: newUsername });
+
       if (alreadyExists)
         return response
           .status(409)

@@ -20,7 +20,6 @@ login.post(
       }
 
       const { username, password } = request.body;
-
       const user = await UserModel.findOne({ username });
 
       if (!user) {

@@ -15,7 +15,6 @@ deleteUser.delete(
     try {
       // Check validation errors
       const errors = validationResult(request);
-
       if (!errors.isEmpty()) {
         return response.status(400).json({ errors: errors.array() });
       }
@@ -23,7 +22,6 @@ deleteUser.delete(
       // Check password is correct before delete the account
       const { password } = request.body;
       const { _id } = request.user;
-
       const user = await UserModel.findById(_id);
 
       const [passwordIsCorrect, _] = await ComparePassword(
