@@ -1,12 +1,17 @@
 import { Router } from 'express';
 import { body, validationResult } from 'express-validator';
 import { UserModel } from '../../models/User.js';
-import { ComparePassword, CreateJWTAccessToken } from '../../utils/utils.js';
+import {
+  ComparePassword,
+  CreateJWTAccessToken,
+  CreateJWTRefreshToken,
+} from '../../utils/utils.js';
 
 export const login = Router();
 
 login.post(
   '/',
+
   // Validación y sanitización de los datos de entrada
   body('username').not().isEmpty().trim(),
   body('password').isLength({ min: 6 }),
@@ -44,18 +49,31 @@ login.post(
         });
       }
 
-      const [token, accessTokenError] = CreateJWTAccessToken(user);
+      const [accessToken, accessTokenError] = CreateJWTAccessToken(user);
 
       if (accessTokenError)
         return response
           .status(500)
-          .json({ error: true, message: 'Unable to create access token' });
+          .json({ error: true, message: 'Unable to create the access token' });
+
+      const [refreshToken, refreshTokenError] = CreateJWTRefreshToken(user);
+      const version = request.baseUrl.split('/')[2];
+
+      if (refreshTokenError)
+        return response
+          .status(500)
+          .json({ error: true, message: 'Unable to create the refresh token' });
 
       return response
         .status(201)
-        .cookie('access-token', token, {
+        .cookie('access-token', accessToken, {
           maxAge: 3_600_000,
           httpOnly: true,
+        })
+        .cookie('refresh-token', refreshToken, {
+          maxAge: 21_600_000,
+          httpOnly: true,
+          path: `/api/${version}/refresh`, // Only available on this route
         })
         .json({ username: user.username });
     } catch (error) {

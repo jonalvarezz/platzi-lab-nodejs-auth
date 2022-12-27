@@ -1,4 +1,7 @@
-import { ACCESS_TOKEN_SECRET } from '../config/constants.config.js';
+import {
+  ACCESS_TOKEN_SECRET,
+  REFRESH_TOKEN_SECRET,
+} from '../config/constants.config.js';
 import { compare, hash } from 'bcrypt';
 import jwt from 'jsonwebtoken';
 
@@ -24,6 +27,18 @@ export const CreateJWTAccessToken = ({ _id, username }) => {
   try {
     const token = jwt.sign({ id: _id, username }, ACCESS_TOKEN_SECRET, {
       expiresIn: 3600,
+    });
+
+    return [token, null];
+  } catch (error) {
+    return [null, error];
+  }
+};
+
+export const CreateJWTRefreshToken = ({ _id, username }) => {
+  try {
+    const token = jwt.sign({ id: _id, username }, REFRESH_TOKEN_SECRET, {
+      expiresIn: 21600, // 6 Hours
     });
 
     return [token, null];

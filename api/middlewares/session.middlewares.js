@@ -1,5 +1,8 @@
 import jwt from 'jsonwebtoken';
-import { ACCESS_TOKEN_SECRET } from '../config/constants.config.js';
+import {
+  ACCESS_TOKEN_SECRET,
+  REFRESH_TOKEN_SECRET,
+} from '../config/constants.config.js';
 import { UserModel } from '../models/User.js';
 
 export const hasValidAccessToken = async (req, res, next) => {
@@ -22,7 +25,40 @@ export const hasValidAccessToken = async (req, res, next) => {
     if (!user)
       return res
         .status(404)
-        .json({ error: true, message: 'User was not found' });
+        .json({ error: true, message: 'Token owner not found' });
+
+    req.user = { _id: payload.id, username: user.username };
+    return next();
+  } catch (error) {
+    if (typeof error === 'JsonWebTokenError')
+      return res
+        .status(400)
+        .json({ error: true, message: 'Provided token is not valid' });
+
+    return res.status(500).json({
+      error: true,
+      message: 'Unexpected error trying to verify the token',
+    });
+  }
+};
+
+export const hasValidRefreshToken = async (req, res, next) => {
+  try {
+    const token = req.cookies['refresh-token'];
+
+    if (!token)
+      return res.status(403).json({
+        error: true,
+        message: 'refresh-token cookie was not provided',
+      });
+
+    const payload = jwt.verify(token, REFRESH_TOKEN_SECRET);
+    const user = await UserModel.findById(payload.id);
+
+    if (!user)
+      return res
+        .status(404)
+        .json({ error: true, message: 'Token owner was not found' });
 
     req.user = { _id: payload.id, username: user.username };
     return next();
