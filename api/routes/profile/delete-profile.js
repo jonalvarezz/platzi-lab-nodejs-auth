@@ -1,5 +1,6 @@
 import { Router } from 'express';
 import { body, validationResult } from 'express-validator';
+import { ERRORS } from '../../config/errors.config.js';
 import { UserModel } from '../../models/User.js';
 import { ComparePassword } from '../../utils/utils.js';
 
@@ -28,7 +29,7 @@ deleteUser.delete(
         await ComparePassword(password, user.password);
 
       if (passwordComparissonError)
-        throw new Error('Unable to compare the passwords');
+        throw new Error(ERRORS.PASSWORD_COMPARISSON_ERROR);
 
       if (!passwordIsCorrect)
         return response

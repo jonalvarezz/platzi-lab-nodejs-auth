@@ -1,11 +1,12 @@
 import { Router } from 'express';
+import { ERRORS } from '../../config/errors.config.js';
 import { CreateJWTAccessToken } from '../../utils/utils.js';
 export const refresh = Router();
 
 refresh.get('/', async (request, response) => {
   try {
     const [accessToken, accessTokenError] = CreateJWTAccessToken(request.user);
-    if (accessTokenError) throw new Error('Unable to create the access token');
+    if (accessTokenError) throw new Error(ERRORS.ACCESS_TOKEN_CREATION_ERROR);
 
     // Send the new cookie
     response

@@ -1,5 +1,6 @@
 import { Router } from 'express';
 import { body, validationResult } from 'express-validator';
+import { ERRORS } from '../../config/errors.config.js';
 import { UserModel } from '../../models/User.js';
 import { ComparePassword, HashPassword } from '../../utils/utils.js';
 
@@ -43,7 +44,7 @@ updateUser.put(
         await ComparePassword(currentPassword, user['password']);
 
       if (passwordComparissonError)
-        throw new Error('Unable to compare the passwords');
+        throw new Error(ERRORS.PASSWORD_COMPARISSON_ERROR);
 
       if (!currensPasswordIsCorrect)
         return response
@@ -55,8 +56,7 @@ updateUser.put(
         newPassword
       );
 
-      if (passwordHashError)
-        throw new Error('Unable to hash the user password');
+      if (passwordHashError) throw new Error(ERRORS.PASSWORD_HASH_ERROR);
 
       // Update the user object
       await UserModel.findByIdAndUpdate(_id, {

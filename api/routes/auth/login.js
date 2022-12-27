@@ -4,6 +4,7 @@ import {
   ACCESS_TOKEN_AGE,
   REFRESH_TOKEN_AGE,
 } from '../../config/constants.config.js';
+import { ERRORS } from '../../config/errors.config.js';
 import { UserModel } from '../../models/User.js';
 import {
   ComparePassword,
@@ -43,7 +44,7 @@ login.post(
       );
 
       if (passwordComparissonError)
-        throw new Error('Unable to compare user password');
+        throw new Error(ERRORS.PASSWORD_COMPARISSON_ERROR);
 
       if (!isPasswordValid)
         return response.status(400).json({
@@ -52,14 +53,13 @@ login.post(
 
       const [accessToken, accessTokenError] = CreateJWTAccessToken(user);
 
-      if (accessTokenError)
-        throw new Error('Unable to create the access token');
+      if (accessTokenError) throw new Error(ERRORS.ACCESS_TOKEN_CREATION_ERROR);
 
       const [refreshToken, refreshTokenError] = CreateJWTRefreshToken(user);
       const version = request.baseUrl.split('/')[2];
 
       if (refreshTokenError)
-        throw new Error('Unable to create the refresh token');
+        throw new Error(ERRORS.REFRESH_TOKEN_CREATION_ERROR);
 
       return response
         .status(201)

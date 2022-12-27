@@ -1,5 +1,6 @@
 import { Router } from 'express';
 import { body, check, validationResult } from 'express-validator';
+import { ERRORS } from '../../config/errors.config.js';
 import { UserModel } from '../../models/User.js';
 import { HashPassword } from '../../utils/utils.js';
 
@@ -31,7 +32,7 @@ signUp.post(
       // Crear hash de la contraseña
       const { username, password } = request.body;
       const [hash, error] = await HashPassword(password);
-      if (error) throw new Error('Unable to hash the user password');
+      if (error) throw new Error(ERRORS.PASSWORD_HASH_ERROR);
 
       const user = await UserModel.create({ username, password: hash });
 
