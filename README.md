@@ -25,8 +25,8 @@ De nuestro "Project Manager", que también es nuevo en la empresa, sabemos lo si
 - Escuché, dice nuestro Project Manager, que aún con lo poco que tiene la aplicación, es muy insegura. Fue echa de afán. Tiene un gravísimo error de seguridad. Sólo se sabe que es relacionado a cómo se guarda cierta información en la base de datos.
 
 - [x] Nuestra primera prioridad es encontrar por qué es insegura y arreglarlo.
-- [ ] Luego, completar el Backend para que las funcionalidades de crear, modificar y eliminar un Perfil trabajen correctamente.
-- [ ] Aunque ten cuidado, solo usuarios autenticados pueden acceder a su perfil. Así que deberás idear antes alguna forma para saber si el usuario inició sesión e identificar quién es.
+- [x] Luego, completar el Backend para que las funcionalidades de crear, modificar y eliminar un Perfil trabajen correctamente.
+- [x] Aunque ten cuidado, solo usuarios autenticados pueden acceder a su perfil. Así que deberás idear antes alguna forma para saber si el usuario inició sesión e identificar quién es.
 
 ### Retos opcionales
 
