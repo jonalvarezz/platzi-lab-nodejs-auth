@@ -1,7 +1,7 @@
 import { Router } from 'express';
 import { body, check, validationResult } from 'express-validator';
-import { UserModel } from '../models/User.js';
-import { HashPassword } from '../utils/utils.js';
+import { UserModel } from '../../models/User.js';
+import { HashPassword } from '../../utils/utils.js';
 
 export const signUp = Router();
 

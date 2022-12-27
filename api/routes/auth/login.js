@@ -1,7 +1,7 @@
 import { Router } from 'express';
 import { body, validationResult } from 'express-validator';
-import { UserModel } from '../models/User.js';
-import { ComparePassword, CreateJWTAccessToken } from '../utils/utils.js';
+import { UserModel } from '../../models/User.js';
+import { ComparePassword, CreateJWTAccessToken } from '../../utils/utils.js';
 
 export const login = Router();
 
@@ -51,7 +51,13 @@ login.post(
           .status(500)
           .json({ error: true, message: 'Unable to create access token' });
 
-      return response.status(201).json({ token, username: user.username });
+      return response
+        .status(201)
+        .cookie('access-token', token, {
+          maxAge: 3_600_000,
+          httpOnly: true,
+        })
+        .json({ username: user.username });
     } catch (error) {
       console.error(`[signIn]: ${error}`);
 

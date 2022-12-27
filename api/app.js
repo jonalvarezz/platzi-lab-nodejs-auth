@@ -1,7 +1,8 @@
 import express from 'express';
+import cookieParser from 'cookie-parser';
 import cors from 'cors';
-import { signUp } from './routes/sign-up.js';
-import { login } from './routes/login.js';
+import { signUp } from './routes/auth/sign-up.js';
+import { login } from './routes/auth/login.js';
 import { profile } from './routes/profile/index.js';
 import { hasValidAccessToken } from './middlewares/session.middlewares.js';
 
@@ -9,6 +10,7 @@ export const app = express();
 
 // Middlewares
 app.use(cors());
+app.use(cookieParser());
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 

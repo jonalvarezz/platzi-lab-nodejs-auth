@@ -4,22 +4,14 @@ import { UserModel } from '../models/User.js';
 
 export const hasValidAccessToken = async (req, res, next) => {
   try {
-    // Check the Authirization header was received
-    const header = req.get('Authorization');
-
-    if (!header)
-      return res.status(403).json({
-        error: true,
-        message: 'Authorization header was not provided',
-      });
-
-    // Check the Authorization header is correct
-    const token = header.split('Bearer ')[1];
+    // Get access token cookie
+    const token = req.cookies['access-token'];
 
     if (!token)
-      return res
-        .status(400)
-        .json({ error: true, message: 'Authorization header is not valid' });
+      return res.status(403).json({
+        error: true,
+        message: 'access-token cookie was not provided',
+      });
 
     // Check the token is valid
     const payload = jwt.verify(token, ACCESS_TOKEN_SECRET);
