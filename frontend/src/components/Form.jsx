@@ -4,7 +4,9 @@ export const Form = ({ fields, title }) => {
       {fields.map((field, index) => {
         return (
           <div className="my-4" key={`${title}-${index}`}>
-            <label className="block">{field.name}</label>
+            <label htmlFor={field.name} className="block">
+              {field.name}
+            </label>
             <input
               className="w-full p-1"
               name={field.name}
