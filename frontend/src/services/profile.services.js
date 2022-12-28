@@ -49,3 +49,23 @@ export const updateProfileService = async (
     return [null, errors];
   }
 };
+
+export const deleteProfileService = async (password) => {
+  try {
+    const response = await axios.delete(`${BASE_API_URL}/profile`, {
+      withCredentials: true,
+    });
+
+    return [response.data, null];
+  } catch (error) {
+    let errors =
+      error.response?.data?.errors ||
+      error.response?.data?.message ||
+      error.response?.data?.error;
+
+    if (!Array.isArray(errors)) errors = [errors];
+    console.log(errors);
+
+    return [null, errors];
+  }
+};
