@@ -39,10 +39,14 @@ deleteUser.delete(
       // Delete the user
       await UserModel.findByIdAndDelete(_id);
 
-      return response.status(200).json({
-        error: false,
-        message: 'User was deleted successfully',
-      });
+      return response
+        .status(200)
+        .clearCookie('access-token')
+        .clearCookie('refresh-token')
+        .json({
+          error: false,
+          message: 'User was deleted successfully',
+        });
     } catch (error) {
       console.error(`[profile DEL]: ${error}`);
 
