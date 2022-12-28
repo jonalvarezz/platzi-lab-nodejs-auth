@@ -62,7 +62,6 @@ login.post(
         throw new Error(ERRORS.REFRESH_TOKEN_CREATION_ERROR);
 
       return response
-        .status(201)
         .cookie('access-token', accessToken, {
           maxAge: ACCESS_TOKEN_AGE * 1000, // ms
           httpOnly: true,

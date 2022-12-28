@@ -1,0 +1,209 @@
+openapi: 3.0.0
+
+info: 
+  title: Platzi Node Auth Challenge
+  description: Challenge solution by PChaparro
+  version: "1.0"
+
+servers: 
+ -  url: https://api-production-8d84.up.railway.app
+    description: Production environment.
+
+paths: 
+
+  # *** *** *** ***
+  # Session routes
+  
+  /api/v1/sign-up:
+    post: 
+      tags: 
+        - Session
+      description: Creates a new user on database.
+      requestBody:
+        content:
+          application/json:
+            schema: 
+              $ref: '#/components/schemas/Session'
+        required: true
+      responses:
+        '200':
+          description: The user was created successfully.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  username: 
+                    type: string
+                    example: "Pedro"
+                  createdAt: 
+                    type: string
+                    example: "2022-12-28T13:17:11.168Z"
+        '400':
+          description: The username already exists or the fields are not correct.
+  
+  /api/v1/login:
+    post:
+      tags: 
+        - Session
+      description: Obtain the session tokens if the username and passwords are correct.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Session'
+        required: true
+      responses:
+        '200':
+          description: Login was successfull.
+          content: 
+            application/json:
+              schema: 
+                type: object
+                properties:
+                  username: 
+                    type: string
+                    example: "Pedro"
+          headers:
+            access-token:
+              description: Contains the short-live access token. Send this cookie back in subsequent request.
+              schema:
+                type: string
+            refresh-token:
+              description: Contains the long-live refresh token. Send this cookie back ONLY for the /api/session/refresh route.
+              schema:
+                type: string
+        '400':
+          description: User / password is incorrect or the fields are not valid.
+  
+  /api/v1/refresh:
+    get: 
+      tags: 
+        - Session
+      description: Obtain a new access token if sends a valid refresh token cookie.
+      parameters: 
+        - name: refresh-token
+          in: cookie
+          description: Refresh token cookie must be provided
+          schema:
+            type: string
+          required: true
+      responses: 
+        '200':
+          description: The refresh token cookie is valid, so, the user gets a new access-token cookie.
+          content: 
+            application/json:
+              schema: 
+                type: object
+                properties:
+                  error: 
+                    type: boolean
+                    example: false
+                  message: 
+                    type: string
+                    example: "New access token was setted as cookie successffully"
+        '403':
+          description: Refresh token cookie was not provided or is not valid.
+        
+
+  # *** *** *** ***
+  # Profile routes
+  
+  /api/v1/profile:
+    get:
+      tags:
+       - Profile
+      description: Get the profile information for the user who owns the session token.
+      parameters: 
+        - name: access-token
+          in: cookie
+          description: Access token cookie must be provided
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Access token was provided and is valid, so, the user gets the profile information.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  _id: 
+                    type: string
+                    example: "63ac41d6d5071aa5a8893c71"
+                  username: 
+                    type: string
+                    example: "Pedro"
+        '403':
+          description: Access token was not provided or is not valid.
+    put: 
+      tags: 
+        - Profile
+      description: Update the user information on database
+      parameters: 
+        - name: access-token
+          in: cookie
+          description: Access token cookie must be provided
+          schema:
+            type: string
+          required: true
+      requestBody: 
+        content:
+          application/json:
+            schema: 
+              type: object
+              properties:
+                newUsername: 
+                  type: string
+                  example: "pedroch"
+                newPassword: 
+                  type: string
+                  example: "newpassword"
+                currentPassword:
+                  type: string
+                  example: "password"
+      responses: 
+        '200': 
+          description: The user information was updated successfully on database.
+        '403':
+          description: Access token was not provided or is not valid / current password field is not correct.
+        '409':
+          description: The new username is already in use.
+    delete: 
+      tags: 
+        - Profile
+      description: Remove the user from database.
+      parameters: 
+        - name: access-token
+          in: cookie
+          description: Access token cookie must be provided
+          schema:
+            type: string
+          required: true
+      requestBody:
+        content: 
+          application/json: 
+            schema: 
+              type: object
+              properties:
+                password: 
+                  type: string
+                  example: "password"
+      responses:
+        '200': 
+          description: The user was deleted successfully from database
+        '403':
+          description: Access token was not provided or is not valid / password field is not correct.
+              
+components:
+  schemas:
+    Session: 
+      type: object
+      properties:
+        username: 
+          type: string
+          example: "Pedro"
+        password: 
+          type: string
+          example: "password"
