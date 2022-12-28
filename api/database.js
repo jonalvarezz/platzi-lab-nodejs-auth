@@ -10,6 +10,7 @@ export const connect = async () => {
   await Mongoose.connect(url, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
+    dbName: 'platzi-lab-node-auth',
   });
 
   console.log('[db] Connected');

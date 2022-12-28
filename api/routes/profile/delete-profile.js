@@ -1,17 +1,31 @@
 import { Router } from 'express';
-import { body, check, validationResult } from 'express-validator';
+import { body, validationResult } from 'express-validator';
+import { ERRORS } from '../../config/errors.config.js';
 import { UserModel } from '../../models/User.js';
+import { ComparePassword } from '../../utils/utils.js';
 
 export const deleteUser = Router();
 
-deleteUser.delete(
-  '/',
-  // @todo: Validación y sanitización de los datos de entrada
+deleteUser.delete('/', async (request, response) => {
+  try {
+    const { _id } = request.user;
 
-  // @todo: Eliminar el usuario actual según la sesión del token JWT
-  async (request, response) => {
-    return response.status(200).json({
-      //
+    // Delete the user
+    await UserModel.findByIdAndDelete(_id);
+
+    return response
+      .status(200)
+      .clearCookie('access-token')
+      .clearCookie('refresh-token')
+      .json({
+        error: false,
+        message: 'User was deleted successfully',
+      });
+  } catch (error) {
+    console.error(`[profile DEL]: ${error}`);
+
+    return response.status(500).json({
+      error: 'An unexpected error happened. Please try again later',
     });
   }
-);
+});

@@ -20,20 +20,21 @@ Desafortunadente, nadie en la empresa sabe del proyecto y es nuestra responsabil
 
 De nuestro "Project Manager", que también es nuevo en la empresa, sabemos lo siguiente:
 
-1. El propósito de la aplicación es permitir crear, actualizar, y eliminar Perfiles de usuario. Los usuarios deberán registrarse primero e iniciar sesión para ser autenticados.
-1. Al momento, solo existe el Backend para registrarse (sign up) e iniciar sesión (login).
-1. Escuché, dice nuestro Project Manager, que aún con lo poco que tiene la aplicación, es muy insegura. Fue echa de afán. Tiene un gravísimo error de seguridad. Sólo se sabe que es relacionado a cómo se guarda cierta información en la base de datos.
-1. Nuestra primera prioridad es encontrar por qué es insegura y arreglarlo.
-1. Luego, completar el Backend para que las funcionalidades de crear, modificar y eliminar un Perfil trabajen correctamente.
-1. Aunque ten cuidado, solo usuarios autenticados pueden acceder a su perfil. Así que deberás idear antes alguna forma para saber si el usuario inició sesión e identificar quién es.
+- El propósito de la aplicación es permitir crear, actualizar, y eliminar Perfiles de usuario. Los usuarios deberán registrarse primero e iniciar sesión para ser autenticados.
+- Al momento, solo existe el Backend para registrarse (sign up) e iniciar sesión (login).
+- Escuché, dice nuestro Project Manager, que aún con lo poco que tiene la aplicación, es muy insegura. Fue echa de afán. Tiene un gravísimo error de seguridad. Sólo se sabe que es relacionado a cómo se guarda cierta información en la base de datos.
+
+- [x] Nuestra primera prioridad es encontrar por qué es insegura y arreglarlo.
+- [x] Luego, completar el Backend para que las funcionalidades de crear, modificar y eliminar un Perfil trabajen correctamente.
+- [x] Aunque ten cuidado, solo usuarios autenticados pueden acceder a su perfil. Así que deberás idear antes alguna forma para saber si el usuario inició sesión e identificar quién es.
 
 ### Retos opcionales
 
 Mientras ibamos por algo de café, nos topamos con nuestro nuestro Project Manager que nos dice:
 
-1. Estaría genial si podemos agregar los tests necesarios para asegurar la funcionalidad y proteger ante futuros bugs de todo lo que haremos.
-1. Ahora, no recuerdo si _también trabajas en el Frontend_, si es así, ¿te animas a crear la UI con la que los visitantes puedan interactuar para utilizar la aplicación? Tienes plena libertad creativa para hacerlo. Confío en ti.
-1. Finalmente, ¿cómo presentaremos este proyecto a las directivas? ¿Podrías subirlo a internet para que podamos probarlo desde alguna URL? Servicios gratuitos como [Render](https://render.com), o [Fly.io](https://fly.io), combinado con [MongoDB Atlas](https://www.mongodb.com/pricing) nos podrían servir.
+- [ ] Estaría genial si podemos agregar los tests necesarios para asegurar la funcionalidad y proteger ante futuros bugs de todo lo que haremos.
+- [x] Ahora, no recuerdo si _también trabajas en el Frontend_, si es así, ¿te animas a crear la UI con la que los visitantes puedan interactuar para utilizar la aplicación? Tienes plena libertad creativa para hacerlo. Confío en ti.
+- [x] Finalmente, ¿cómo presentaremos este proyecto a las directivas? ¿Podrías subirlo a internet para que podamos probarlo desde alguna URL? Servicios gratuitos como [Render](https://render.com), o [Fly.io](https://fly.io), combinado con [MongoDB Atlas](https://www.mongodb.com/pricing) nos podrían servir.
 
 ### Lo que sabemos de la aplicación
 

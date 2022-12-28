@@ -2,11 +2,27 @@
   "name": "frontend",
   "version": "0.1.0",
   "description": "Aplicación web para nuestra proyecto (frontend)",
+  "keywords": [],
+  "author": "Pedro Chaparro",
+  "license": "ISC",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC"
+  "dependencies": {
+    "axios": "1.2.1",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  },
+  "devDependencies": {
+    "@types/react": "^18.0.26",
+    "@types/react-dom": "^18.0.9",
+    "@vitejs/plugin-react-swc": "^3.0.0",
+    "autoprefixer": "10.4.13",
+    "postcss": "8.4.20",
+    "tailwindcss": "3.2.4",
+    "vite": "^4.0.0"
+  }
 }

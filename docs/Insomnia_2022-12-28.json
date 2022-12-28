@@ -1,0 +1,289 @@
+{
+  "_type": "export",
+  "__export_format": 4,
+  "__export_date": "2022-12-28T13:18:55.286Z",
+  "__export_source": "insomnia.desktop.app:v2022.6.0",
+  "resources": [
+    {
+      "_id": "req_e31fcf6360ff492996baeae91d1f8bbc",
+      "parentId": "wrk_46b2a0d8d31b4396908eb62040345ae5",
+      "modified": 1672233425574,
+      "created": 1672147695450,
+      "url": "{{ _.url }}/api/v1/refresh",
+      "name": "Refresh token",
+      "description": "",
+      "method": "GET",
+      "body": {},
+      "parameters": [],
+      "headers": [],
+      "authentication": {},
+      "metaSortKey": -1672147695450,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global",
+      "_type": "request"
+    },
+    {
+      "_id": "wrk_46b2a0d8d31b4396908eb62040345ae5",
+      "parentId": null,
+      "modified": 1672081207908,
+      "created": 1672081207908,
+      "name": "Platzi Node Auth",
+      "description": "",
+      "scope": "collection",
+      "_type": "workspace"
+    },
+    {
+      "_id": "req_1282ff92e7bf4608a7984371f9e08cf9",
+      "parentId": "wrk_46b2a0d8d31b4396908eb62040345ae5",
+      "modified": 1672233440920,
+      "created": 1672088490020,
+      "url": "{{ _.url }}/api/v1/profile",
+      "name": "Profile (Update)",
+      "description": "",
+      "method": "PUT",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n\t\"newUsername\": \"pedrochaparro\",\n\t\"newPassword\": \"password\",\n\t\"currentPassword\": \"password\"\n}"
+      },
+      "parameters": [],
+      "headers": [
+        {
+          "id": "pair_7e2b92acd9db4c9dbab881cc4e3e8fc0",
+          "name": "Authorization",
+          "value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzYWExNTU2Njk5ZmNkNWI2YmIzZTA0YSIsInVzZXJuYW1lIjoibHVjYXMiLCJpYXQiOjE2NzIwOTA5NzAsImV4cCI6MTY3MjA5NDU3MH0.KNXaU4vukhWckfiNaO8YrqZtC8dWe5aJQmsrSZaFWlk",
+          "description": ""
+        },
+        {
+          "name": "Content-Type",
+          "value": "application/json",
+          "id": "pair_d8f050fdfaab461c84e4231f87283714"
+        }
+      ],
+      "authentication": {},
+      "metaSortKey": -1672088490020,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global",
+      "_type": "request"
+    },
+    {
+      "_id": "req_19ab87ab3be34a848f82816186d9a14e",
+      "parentId": "wrk_46b2a0d8d31b4396908eb62040345ae5",
+      "modified": 1672233437854,
+      "created": 1672087981519,
+      "url": "{{ _.url }}/api/v1/profile",
+      "name": "Profile (Delete)",
+      "description": "",
+      "method": "DELETE",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n\t\"password\": \"password\"\n}"
+      },
+      "parameters": [],
+      "headers": [
+        {
+          "id": "pair_53a66c0080424788aaf9948bca60522a",
+          "name": "Authorization",
+          "value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzYWExNTU2Njk5ZmNkNWI2YmIzZTA0YSIsInVzZXJuYW1lIjoibHVjYXMiLCJpYXQiOjE2NzIwOTA5NzAsImV4cCI6MTY3MjA5NDU3MH0.KNXaU4vukhWckfiNaO8YrqZtC8dWe5aJQmsrSZaFWlk",
+          "description": ""
+        },
+        {
+          "name": "Content-Type",
+          "value": "application/json",
+          "id": "pair_4d447ec96d304b48b0568b5b52a6e255"
+        }
+      ],
+      "authentication": {},
+      "metaSortKey": -1672087981519,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global",
+      "_type": "request"
+    },
+    {
+      "_id": "req_7686fc3cd1cd4f869f8e4507ba035ea8",
+      "parentId": "wrk_46b2a0d8d31b4396908eb62040345ae5",
+      "modified": 1672233414715,
+      "created": 1672082129744,
+      "url": "{{ _.url }}/api/v1/profile",
+      "name": "Profile (Obtain)",
+      "description": "",
+      "method": "GET",
+      "body": { "mimeType": "application/json", "text": "" },
+      "parameters": [],
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json",
+          "id": "pair_c7d134171d4540d39fce673c8dab1048"
+        },
+        {
+          "id": "pair_a7ed028a1dbd44458bff63a9029cd1c0",
+          "name": "Authorization",
+          "value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzYWFlZmJiZTFiMmNiZmRjM2QxZGEyZCIsInVzZXJuYW1lIjoibWFydGluYSIsImlhdCI6MTY3MjE0Njg4MiwiZXhwIjoxNjcyMTUwNDgyfQ.rLD5Rz7mkJQsVxMJh2aN8L4D6mmwA7PnRAo-cyVU0Qs",
+          "description": ""
+        }
+      ],
+      "authentication": {
+        "type": "bearer",
+        "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzYWFlZmJiZTFiMmNiZmRjM2QxZGEyZCIsInVzZXJuYW1lIjoibWFydGluYSIsImlhdCI6MTY3MjE0Njg4MiwiZXhwIjoxNjcyMTUwNDgyfQ.rLD5Rz7mkJQsVxMJh2aN8L4D6mmwA7PnRAo-cyVU0Qs",
+        "disabled": true
+      },
+      "metaSortKey": -1672082129744,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global",
+      "_type": "request"
+    },
+    {
+      "_id": "req_e66182abc0e040678274358c8c38f877",
+      "parentId": "wrk_46b2a0d8d31b4396908eb62040345ae5",
+      "modified": 1672233432534,
+      "created": 1672082114864,
+      "url": "{{ _.url }}/api/v1/login",
+      "name": "Login",
+      "description": "",
+      "method": "POST",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n\t\"username\": \"pedro\",\n\t\"password\": \"password\"\n}"
+      },
+      "parameters": [],
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json",
+          "id": "pair_b52fb55ffb454fdb9ba73338f5c69e8d"
+        }
+      ],
+      "authentication": {},
+      "metaSortKey": -1672082114864,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global",
+      "_type": "request"
+    },
+    {
+      "_id": "req_6cc75e95d2114c4d927fe802c2496734",
+      "parentId": "wrk_46b2a0d8d31b4396908eb62040345ae5",
+      "modified": 1672233430389,
+      "created": 1672082035176,
+      "url": "{{ _.url }}/api/v1/sign-up",
+      "name": "Signup",
+      "description": "",
+      "method": "POST",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n\t\"username\": \"pedro\",\n\t\"password\": \"password\"\n}"
+      },
+      "parameters": [],
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json",
+          "id": "pair_6db756cddb7b4b67bc91fdcfd062d72d"
+        }
+      ],
+      "authentication": {},
+      "metaSortKey": -1672082035176,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global",
+      "_type": "request"
+    },
+    {
+      "_id": "env_56ed7b5eede43ee85687dc1ea28f2849a3d8e471",
+      "parentId": "wrk_46b2a0d8d31b4396908eb62040345ae5",
+      "modified": 1672233505666,
+      "created": 1672081207912,
+      "name": "Base Environment",
+      "data": { "url": "https://api-production-8d84.up.railway.app" },
+      "dataPropertyOrder": { "&": ["url"] },
+      "color": null,
+      "isPrivate": false,
+      "metaSortKey": 1672081207912,
+      "_type": "environment"
+    },
+    {
+      "_id": "jar_56ed7b5eede43ee85687dc1ea28f2849a3d8e471",
+      "parentId": "wrk_46b2a0d8d31b4396908eb62040345ae5",
+      "modified": 1672233446416,
+      "created": 1672081207913,
+      "name": "Default Jar",
+      "cookies": [
+        {
+          "key": "access-token",
+          "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzYWM0MWQ3ZDUwNzFkYTVhODg5M2M2NSIsInVzZXJuYW1lIjoicGVkcm9jaGFwYXJybyIsImlhdCI6MTY3MjIzMzQ0NiwiZXhwIjoxNjcyMjM1MjQ2fQ.pmvJrjj5l8MxnUvv2WxoNIxnImQhox03Ium0xtBAluU",
+          "expires": "2022-12-28T14:17:26.000Z",
+          "maxAge": 3600,
+          "domain": "api-production-8d84.up.railway.app",
+          "path": "/",
+          "httpOnly": true,
+          "hostOnly": true,
+          "creation": "2022-12-28T13:16:48.700Z",
+          "lastAccessed": "2022-12-28T13:17:26.416Z",
+          "id": "7636078419135974"
+        },
+        {
+          "key": "refresh-token",
+          "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzYWM0MWQ3ZDUwNzFkYTVhODg5M2M2NSIsInVzZXJuYW1lIjoicGVkcm8iLCJpYXQiOjE2NzIyMzM0MzMsImV4cCI6MTY3MjI1NTAzM30.DLsczJeQHW2Rg2q6Wd1ogUlEDfoqEdCqScP_3XuS9qg",
+          "expires": "2022-12-28T19:17:13.000Z",
+          "maxAge": 21600,
+          "domain": "api-production-8d84.up.railway.app",
+          "path": "/api/v1/refresh",
+          "httpOnly": true,
+          "hostOnly": true,
+          "creation": "2022-12-28T13:16:48.701Z",
+          "lastAccessed": "2022-12-28T13:17:13.823Z",
+          "id": "357790811943131"
+        },
+        {
+          "key": "refresh-token",
+          "expires": "1970-01-01T00:00:00.000Z",
+          "domain": "api-production-8d84.up.railway.app",
+          "path": "/",
+          "hostOnly": true,
+          "creation": "2022-12-28T13:16:59.101Z",
+          "lastAccessed": "2022-12-28T13:16:59.101Z",
+          "id": "5275799184689043"
+        }
+      ],
+      "_type": "cookie_jar"
+    },
+    {
+      "_id": "spc_08e91f6414524cac9ec7b7e8da7959dc",
+      "parentId": "wrk_46b2a0d8d31b4396908eb62040345ae5",
+      "modified": 1672081207909,
+      "created": 1672081207909,
+      "fileName": "Platzi Node Auth",
+      "contents": "",
+      "contentType": "yaml",
+      "_type": "api_spec"
+    }
+  ]
+}
