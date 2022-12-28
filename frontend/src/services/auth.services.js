@@ -16,10 +16,14 @@ export const signupService = async (username, password) => {
 
 export const loginService = async (username, password) => {
   try {
-    const response = await axios.post(`${BASE_API_URL}/login`, {
-      username,
-      password,
-    });
+    const response = await axios.post(
+      `${BASE_API_URL}/login`,
+      {
+        username,
+        password,
+      },
+      { withCredentials: true }
+    );
 
     return [response.data, null];
   } catch (error) {
