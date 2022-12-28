@@ -11,7 +11,9 @@ export const Form = ({ fields, title, callback }) => {
     // Use the callback function and update the errors state
     const fetch = async () => {
       const [response, error] = await callback(data);
-      setErrors(error);
+
+      if (error) setErrors(error);
+      if (response) e.target.reset();
     };
 
     fetch();
