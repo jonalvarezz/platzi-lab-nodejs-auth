@@ -1,8 +1,13 @@
 import { Form } from '../Form';
 
 const SignupFormFields = [
-  { name: 'Username', type: 'text' },
-  { name: 'Password', type: 'password' },
+  { label: 'Username', name: 'username', type: 'text', placeholder: 'Pedro' },
+  {
+    label: 'Password',
+    name: 'password',
+    type: 'password',
+    placeholder: '******',
+  },
 ];
 
 export const Signup = () => {

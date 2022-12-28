@@ -1,9 +1,24 @@
 import { Form } from '../Form';
 
 const loginFormFields = [
-  { name: 'New Username', type: 'text' },
-  { name: 'New Password', type: 'password' },
-  { name: 'Current Password', type: 'password' },
+  {
+    label: 'New Username',
+    name: 'newUsername',
+    type: 'text',
+    placeholder: 'pedro',
+  },
+  {
+    label: 'New Password',
+    name: 'newPassword',
+    type: 'password',
+    placeholder: '******',
+  },
+  {
+    label: 'Current Password',
+    name: 'currentPassword',
+    type: 'password',
+    placeholder: '******',
+  },
 ];
 
 export const UpdateProfile = () => {
