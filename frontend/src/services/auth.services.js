@@ -29,8 +29,8 @@ export const loginService = async (username, password) => {
   } catch (error) {
     let errors =
       error.response?.data?.errors ||
-      error.response?.data?.error ||
-      error.response?.data?.message;
+      error.response?.data?.message ||
+      error.response?.data?.error;
 
     if (!Array.isArray(errors)) errors = [errors];
 

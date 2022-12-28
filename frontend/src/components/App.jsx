@@ -14,10 +14,10 @@ export const App = () => {
     <div className="max-w-screen-xl mx-auto p-4 grid gap-8 md:grid-cols-3">
       <Signup />
       <Login updateUserCallback={updateUser} />
-      <section className="bg-sky-200 p-4">
+      <section className="bg-sky-200 p-4 overflow-x-auto">
         <pre>{JSON.stringify(user, null, 2)}</pre>
       </section>
-      <UpdateProfile user={user} />
+      <UpdateProfile updateUserCallback={updateUser} />
     </div>
   );
 };

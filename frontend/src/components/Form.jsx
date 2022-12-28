@@ -12,7 +12,7 @@ export const Form = ({ fields, title, callback }) => {
     const fetch = async () => {
       const [response, error] = await callback(data);
 
-      if (error) setErrors(error);
+      error ? setErrors(error) : setErrors([]);
       if (response) e.target.reset();
     };
 

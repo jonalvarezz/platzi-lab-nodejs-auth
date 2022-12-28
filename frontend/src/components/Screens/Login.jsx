@@ -1,5 +1,5 @@
 import { loginService } from '../../services/auth.services';
-import { getProfile } from '../../services/profile.services';
+import { getProfileService } from '../../services/profile.services';
 import { Form } from '../Form';
 
 const loginFormFields = [
@@ -17,8 +17,8 @@ export const Login = ({ updateUserCallback }) => {
     const [response, error] = await loginService(username, password);
 
     if (response) {
-      const [user, _] = await getProfile();
       // Update the user, so, the third "Screen" is updated
+      const [user, _] = await getProfileService();
       updateUserCallback(user);
     }
 
