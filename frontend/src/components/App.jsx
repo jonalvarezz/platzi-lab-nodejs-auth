@@ -6,12 +6,18 @@ import { UpdateProfile } from './Screens/UpdateProfile';
 export const App = () => {
   const [user, setUser] = useState(null);
 
+  const updateUser = (user) => {
+    setUser(user);
+  };
+
   return (
     <div className="max-w-screen-xl mx-auto p-4 grid gap-8 md:grid-cols-3">
       <Signup />
-      <Login />
-      <p>Get profile screen placeholder</p>
-      <UpdateProfile />
+      <Login updateUserCallback={updateUser} />
+      <section className="bg-sky-200 p-4">
+        <pre>{JSON.stringify(user, null, 2)}</pre>
+      </section>
+      <UpdateProfile user={user} />
     </div>
   );
 };
