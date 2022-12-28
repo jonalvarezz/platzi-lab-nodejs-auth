@@ -50,7 +50,7 @@ export const updateProfileService = async (
   }
 };
 
-export const deleteProfileService = async (password) => {
+export const deleteProfileService = async () => {
   try {
     const response = await axios.delete(`${BASE_API_URL}/profile`, {
       withCredentials: true,
