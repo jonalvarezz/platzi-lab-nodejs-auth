@@ -34,7 +34,7 @@ Mientras ibamos por algo de café, nos topamos con nuestro nuestro Project Manag
 
 - [ ] Estaría genial si podemos agregar los tests necesarios para asegurar la funcionalidad y proteger ante futuros bugs de todo lo que haremos.
 - [ ] Ahora, no recuerdo si _también trabajas en el Frontend_, si es así, ¿te animas a crear la UI con la que los visitantes puedan interactuar para utilizar la aplicación? Tienes plena libertad creativa para hacerlo. Confío en ti.
-- [ ] Finalmente, ¿cómo presentaremos este proyecto a las directivas? ¿Podrías subirlo a internet para que podamos probarlo desde alguna URL? Servicios gratuitos como [Render](https://render.com), o [Fly.io](https://fly.io), combinado con [MongoDB Atlas](https://www.mongodb.com/pricing) nos podrían servir.
+- [x] Finalmente, ¿cómo presentaremos este proyecto a las directivas? ¿Podrías subirlo a internet para que podamos probarlo desde alguna URL? Servicios gratuitos como [Render](https://render.com), o [Fly.io](https://fly.io), combinado con [MongoDB Atlas](https://www.mongodb.com/pricing) nos podrían servir.
 
 ### Lo que sabemos de la aplicación
 
