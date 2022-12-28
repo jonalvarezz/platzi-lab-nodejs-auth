@@ -13,7 +13,7 @@ import {
 export const app = express();
 
 // Middlewares
-app.use(cors());
+app.use(cors({ origin: 'https://pchaparro-platzi-node-auth.netlify.app' }));
 app.use(cookieParser());
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
