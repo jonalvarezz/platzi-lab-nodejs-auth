@@ -12,8 +12,7 @@ const SignupFormFields = [
 ];
 
 export const Signup = () => {
-  const signupCallback = async (data) => {
-    const { username, password } = data;
+  const signupCallback = async ({ username, password }) => {
     const [response, error] = await signupService(username, password);
     return [response, error];
   };

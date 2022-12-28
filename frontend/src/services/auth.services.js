@@ -7,10 +7,29 @@ export const signupService = async (username, password) => {
       username,
       password,
     });
-
     return [response.data, null];
   } catch (error) {
     const errors = error.response?.data?.errors;
+    return [null, errors];
+  }
+};
+
+export const loginService = async (username, password) => {
+  try {
+    const response = await axios.post(`${BASE_API_URL}/login`, {
+      username,
+      password,
+    });
+
+    return [response.data, null];
+  } catch (error) {
+    let errors =
+      error.response?.data?.errors ||
+      error.response?.data?.error ||
+      error.response?.data?.message;
+
+    if (!Array.isArray(errors)) errors = [errors];
+
     return [null, errors];
   }
 };

@@ -41,7 +41,7 @@ export const Form = ({ fields, title, callback }) => {
       <ul className="list-disc ml-4 text-red-600 text-justify">
         {errors.map((error, index) => (
           <li className="capitalize" key={`${title}-err-${index}`}>
-            {`[${error.param}]: ${error.msg}`}
+            {error.param ? `[${error.param}]: ${error.msg}` : error}
           </li>
         ))}
       </ul>
