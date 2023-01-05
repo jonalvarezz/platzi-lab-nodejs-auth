@@ -1,7 +1,8 @@
 import { Router } from 'express';
 import { body, validationResult } from 'express-validator';
 import { UserModel } from '../models/User.js';
-
+import { compare } from 'bcrypt';
+import jwt from 'jsonwebtoken';
 export const login = Router();
 
 login.post(
@@ -28,17 +29,28 @@ login.post(
         });
       }
 
-      const isPasswordValid = password === user.password;
-      if (!isPasswordValid) {
-        return response.status(400).json({
-          error: 'username or password is incorrect',
-        });
-      }
+      const isPasswordValid = compare(password, user.password, (err) => {
+        if (err) {
+          return response.status(400).json({
+            error: 'username or password is incorrect',
+          });
+        }
 
-      // @todo: generate a JWT token
-      const token = 'jwt-token';
+        // @todo: generate a JWT token
+        const token = jwt.sign(
+          { username: user.username, id: user.id },
+          process.env.JWT_SECRET,
+          {
+            expiresIn: '1h',
+          }
+        );
 
-      return response.status(201).json({ token, username: user.username });
+        request.username = user.username;
+        request.query.token = token;
+        return response
+          .status(201)
+          .json({ token: token, username: user.username });
+      });
     } catch (error) {
       console.error(`[signIn]: ${error}`);
 

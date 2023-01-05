@@ -13,5 +13,8 @@
   ],
   "devDependencies": {
     "prettier": "2.7.1"
+  },
+  "dependencies": {
+    "bcrypt": "5.1.0"
   }
 }
