@@ -44,12 +44,8 @@ login.post(
             expiresIn: '1h',
           }
         );
-
-        request.username = user.username;
-        request.query.token = token;
-        return response
-          .status(201)
-          .json({ token: token, username: user.username });
+        response.setHeader('x-access-token', token);
+        response.status(201).json({ token: token });
       });
     } catch (error) {
       console.error(`[signIn]: ${error}`);

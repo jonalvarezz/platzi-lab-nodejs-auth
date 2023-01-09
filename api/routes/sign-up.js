@@ -16,8 +16,17 @@ signUp.post(
       throw new Error('username already in use');
     }
     return true;
+  }), 
+  check('email').custom(async (email) => {
+    const maybeEmail = await UserModel.findOne({ email });
+    if (maybeEmail) {
+      throw new Error('email already in use');
+    }
+    return true;
   }),
   body('password').isLength({ min: 6 }),
+  body('name').notEmpty().isLength(3),
+  body('email').isEmail().notEmpty(),
   //
   async (request, response) => {
     try {
@@ -26,16 +35,15 @@ signUp.post(
         return response.status(400).json({ errors: errors.array() });
       }
       const SALT_ROUNDS = parseInt(process.env.SALT_ROUNDS);
-      const { username } = request.body;
+      const { username, email, name } = request.body;
 
       const salt = await genSalt(SALT_ROUNDS);
       const password = await hash(request.body.password, salt);
 
-      const user = await UserModel.create({ username, password });
+      const user = await UserModel.create({ username, password, name, email });
 
       return response.status(201).json({
-        username: user.username,
-        createdAt: user.createdAt,
+        data: user,
       });
     } catch (error) {
       console.error(`[signIn]: ${error}`);

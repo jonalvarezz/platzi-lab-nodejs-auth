@@ -14,12 +14,13 @@ async function verifyToken(req, res, next) {
         username: user.username,
         id: user.id,
       },
-      process.env.TOKEN_KEY,
+      process.env.JWT_SECRET,
       { expiresIn: '1h' }
     );
     req.username = user.username;
-    req.token = tokenUpdated;
+    req.userId = user._id.toString();
   } catch (err) {
+    console.log(err);
     return res.status(401).json({ error: 'Time session expired' });
   }
   return next();
